@@ -71,6 +71,22 @@ body::after {
   100% { transform: translate(-5%, 15%) scale(0.9); }
 }
 
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(calc(var(--cursor-x, 50vw) - 50%), calc(var(--cursor-y, 50vh) - 50%));
+  filter: blur(100px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1; 
+  will-change: transform;
+}
+
 #root {
   width: 100vw;
   height: 100vh;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Activity, Database, Lock, CheckCircle2 } from 'lucide-react';
 import ModeSlider from './components/ModeSlider';
@@ -9,8 +9,19 @@ import './App.css';
 function App() {
   const [mode, setMode] = useState('ensave');
 
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
     <div className="dashboard-grid">
+      <div className="cursor-glow"></div>
       
       {/* Branding Card */}
       <motion.div 
