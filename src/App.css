@@ -256,3 +256,98 @@ textarea.large-textarea {
   align-items: center;
   gap: 0.5rem;
 }
+
+/* Vault History Styles */
+.vault-history-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.vault-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.vault-entry {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vault-entry-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.vault-entry h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.vault-entry p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.icon-btn.delete-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 59, 48, 0.6);
+  cursor: pointer;
+  padding: 0.2rem;
+  transition: color 0.2s ease;
+  align-self: flex-end;
+}
+
+.icon-btn.delete-btn:hover {
+  color: rgba(255, 59, 48, 1);
+}
+
+.vault-delete-prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed rgba(255,255,255,0.1);
+}
+
+.vault-delete-prompt input {
+  padding: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 8px;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.error-text {
+  color: var(--error);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}

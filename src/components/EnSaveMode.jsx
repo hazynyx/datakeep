@@ -31,8 +31,14 @@ const EnSaveMode = () => {
       // Encrypt the actual text with the key
       const encryptedData = CryptoJS.AES.encrypt(text, key).toString();
       
+      const payload = {
+        encryptedText: encryptedData,
+        keySuffix: key.substring(key.length - 4),
+        createdAt: Date.now()
+      };
+      
       // Save to IndexedDB
-      await localforage.setItem(dbId, encryptedData);
+      await localforage.setItem(dbId, payload);
       
       setGeneratedKey(key);
       setText('');

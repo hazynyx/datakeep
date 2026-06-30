@@ -21,11 +21,13 @@ const DeFindMode = () => {
 
     try {
       const dbId = CryptoJS.SHA256(keyInput.trim()).toString();
-      const encryptedData = await localforage.getItem(dbId);
+      const data = await localforage.getItem(dbId);
       
-      if (!encryptedData) {
+      if (!data) {
         throw new Error('No data found for this key.');
       }
+      
+      const encryptedData = typeof data === 'object' && data.encryptedText ? data.encryptedText : data;
 
       const bytes = CryptoJS.AES.decrypt(encryptedData, keyInput.trim());
       const originalText = bytes.toString(CryptoJS.enc.Utf8);

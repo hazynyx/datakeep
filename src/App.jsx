@@ -4,6 +4,7 @@ import { Shield, Activity, Database, Lock, CheckCircle2 } from 'lucide-react';
 import ModeSlider from './components/ModeSlider';
 import EnSaveMode from './components/EnSaveMode';
 import DeFindMode from './components/DeFindMode';
+import VaultHistory from './components/VaultHistory';
 import './App.css';
 
 function App() {
@@ -54,28 +55,10 @@ function App() {
         transition={{ delay: 0.2 }}
       >
         <h3 style={{ marginBottom: '0.5rem', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Activity size={18} color="var(--accent)" /> System Status
+          <Activity size={18} color="var(--accent)" /> Vault History
         </h3>
         
-        <div className="status-list">
-          <div className="status-item">
-            <Lock size={16} /> <span>Encryption</span> <span className="status-value success">AES-256</span>
-          </div>
-          <div className="status-item">
-            <Database size={16} /> <span>Storage</span> <span className="status-value">IndexedDB</span>
-          </div>
-          <div className="status-item">
-            <CheckCircle2 size={16} /> <span>Zero-Knowledge</span> <span className="status-value success">Active</span>
-          </div>
-          <div className="status-item">
-            <Shield size={16} /> <span>Network</span> <span className="status-value neutral">Offline</span>
-          </div>
-        </div>
-
-        <div className="info-box">
-          <h4>How it works</h4>
-          <p>{mode === 'ensave' ? 'Your text is encrypted locally using AES-256. The key is never stored.' : 'Enter your unique key to decrypt data from your local browser storage.'}</p>
-        </div>
+        <VaultHistory />
       </motion.div>
 
       {/* Main Action Area */}
