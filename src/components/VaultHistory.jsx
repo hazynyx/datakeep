@@ -33,7 +33,16 @@ const VaultHistory = () => {
         loadedEntries.push({
           id: key,
           keySuffix: data.keySuffix,
-          createdAt: data.createdAt
+          createdAt: data.createdAt,
+          isLegacy: false
+        });
+      } else if (typeof data === 'string') {
+        // Legacy entries stored before the history feature
+        loadedEntries.push({
+          id: key,
+          keySuffix: 'Legacy',
+          createdAt: 0, // Places them at the bottom
+          isLegacy: true
         });
       }
     }
@@ -83,8 +92,8 @@ const VaultHistory = () => {
         {entries.map(entry => (
           <div key={entry.id} className="vault-entry">
             <div className="vault-entry-info">
-              <h4>Entry xx-{entry.keySuffix}</h4>
-              <p>Created: {formatDate(entry.createdAt)}</p>
+              <h4>{entry.isLegacy ? 'Legacy Entry' : `Entry xx-${entry.keySuffix}`}</h4>
+              <p>{entry.isLegacy ? 'Unknown Date' : `Created: ${formatDate(entry.createdAt)}`}</p>
             </div>
             
             {deletingId === entry.id ? (
