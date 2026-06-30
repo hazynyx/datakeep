@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   const [mode, setMode] = useState('ensave');
-  const [leftTab, setLeftTab] = useState('history'); // 'history' or 'status'
+  const [leftTab, setLeftTab] = useState('status'); // 'status' or 'history'
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -61,8 +61,8 @@ function App() {
             {leftTab === 'history' ? 'Vault History' : 'System Status'}
           </h3>
           <div className="mini-slider">
-            <button className={leftTab === 'history' ? 'active' : ''} onClick={() => setLeftTab('history')}>History</button>
             <button className={leftTab === 'status' ? 'active' : ''} onClick={() => setLeftTab('status')}>Status</button>
+            <button className={leftTab === 'history' ? 'active' : ''} onClick={() => setLeftTab('history')}>History</button>
           </div>
         </div>
         
