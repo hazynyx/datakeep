@@ -9,6 +9,7 @@ import './App.css';
 
 function App() {
   const [mode, setMode] = useState('ensave');
+  const [leftTab, setLeftTab] = useState('history'); // 'history' or 'status'
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -54,11 +55,42 @@ function App() {
         animate={{ opacity: 1, x: 0 }} 
         transition={{ delay: 0.2 }}
       >
-        <h3 style={{ marginBottom: '0.5rem', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Activity size={18} color="var(--accent)" /> Vault History
-        </h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+          <h3 style={{ fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', margin: 0 }}>
+            <Activity size={18} color="var(--accent)" /> 
+            {leftTab === 'history' ? 'Vault History' : 'System Status'}
+          </h3>
+          <div className="mini-slider">
+            <button className={leftTab === 'history' ? 'active' : ''} onClick={() => setLeftTab('history')}>History</button>
+            <button className={leftTab === 'status' ? 'active' : ''} onClick={() => setLeftTab('status')}>Status</button>
+          </div>
+        </div>
         
-        <VaultHistory />
+        {leftTab === 'history' ? (
+          <VaultHistory />
+        ) : (
+          <>
+            <div className="status-list">
+              <div className="status-item">
+                <Lock size={16} /> <span>Encryption</span> <span className="status-value success">AES-256</span>
+              </div>
+              <div className="status-item">
+                <Database size={16} /> <span>Storage</span> <span className="status-value">IndexedDB</span>
+              </div>
+              <div className="status-item">
+                <CheckCircle2 size={16} /> <span>Zero-Knowledge</span> <span className="status-value success">Active</span>
+              </div>
+              <div className="status-item">
+                <Shield size={16} /> <span>Network</span> <span className="status-value neutral">Offline</span>
+              </div>
+            </div>
+
+            <div className="info-box" style={{ marginTop: 'auto' }}>
+              <h4>How it works</h4>
+              <p>{mode === 'ensave' ? 'Your text is encrypted locally using AES-256. The key is never stored.' : 'Enter your unique key to decrypt data from your local browser storage.'}</p>
+            </div>
+          </>
+        )}
       </motion.div>
 
       {/* Main Action Area */}
