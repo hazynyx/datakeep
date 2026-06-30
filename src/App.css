@@ -332,8 +332,15 @@ textarea.large-textarea {
   color: rgba(255, 59, 48, 0.6);
   cursor: pointer;
   padding: 0.2rem;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
   align-self: flex-end;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vault-entry:hover .icon-btn.delete-btn {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .icon-btn.delete-btn:hover {
