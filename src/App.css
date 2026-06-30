@@ -30,6 +30,7 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem !important;
+  overflow: hidden;
 }
 
 .status-list {
