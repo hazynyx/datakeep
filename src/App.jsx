@@ -66,31 +66,49 @@ function App() {
           </div>
         </div>
         
-        {leftTab === 'history' ? (
-          <VaultHistory />
-        ) : (
-          <>
-            <div className="status-list">
-              <div className="status-item">
-                <Lock size={16} /> <span>Encryption</span> <span className="status-value success">AES-256</span>
+        <AnimatePresence mode="wait">
+          {leftTab === 'history' ? (
+            <motion.div
+              key="history"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ duration: 0.2 }}
+              style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+            >
+              <VaultHistory />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="status"
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.2 }}
+              style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+            >
+              <div className="status-list">
+                <div className="status-item">
+                  <Lock size={16} /> <span>Encryption</span> <span className="status-value success">AES-256</span>
+                </div>
+                <div className="status-item">
+                  <Database size={16} /> <span>Storage</span> <span className="status-value">IndexedDB</span>
+                </div>
+                <div className="status-item">
+                  <CheckCircle2 size={16} /> <span>Zero-Knowledge</span> <span className="status-value success">Active</span>
+                </div>
+                <div className="status-item">
+                  <Shield size={16} /> <span>Network</span> <span className="status-value neutral">Offline</span>
+                </div>
               </div>
-              <div className="status-item">
-                <Database size={16} /> <span>Storage</span> <span className="status-value">IndexedDB</span>
-              </div>
-              <div className="status-item">
-                <CheckCircle2 size={16} /> <span>Zero-Knowledge</span> <span className="status-value success">Active</span>
-              </div>
-              <div className="status-item">
-                <Shield size={16} /> <span>Network</span> <span className="status-value neutral">Offline</span>
-              </div>
-            </div>
 
-            <div className="info-box" style={{ marginTop: 'auto' }}>
-              <h4>How it works</h4>
-              <p>{mode === 'ensave' ? 'Your text is encrypted locally using AES-256. The key is never stored.' : 'Enter your unique key to decrypt data from your local browser storage.'}</p>
-            </div>
-          </>
-        )}
+              <div className="info-box" style={{ marginTop: 'auto' }}>
+                <h4>How it works</h4>
+                <p>{mode === 'ensave' ? 'Your text is encrypted locally using AES-256. The key is never stored.' : 'Enter your unique key to decrypt data from your local browser storage.'}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* Main Action Area */}
